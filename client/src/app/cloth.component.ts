@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'cloth-root',
   templateUrl: './cloth.component.html',
 })
-export class ClothComponent {
+export class ClothComponent implements OnInit {
   title = 'cloth - code';
+
+  constructor() {}
+
+  ngOnInit() {}
 }
