@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './cloth-routing.module';
 
 import { CoreModule } from './core/core.module';
-import { ShopModule } from './shop/shop.module';
 
 import { ClothComponent } from './cloth.component';
 
@@ -17,7 +16,6 @@ import { ClothComponent } from './cloth.component';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ShopModule,
   ],
   providers: [],
   bootstrap: [ClothComponent],

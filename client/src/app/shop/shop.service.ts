@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { IBrand } from '../shared/models/brand';
 import { IPagination } from '../shared/models/pagination';
+import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
 
@@ -11,7 +12,7 @@ import { ShopParams } from '../shared/models/shopParams';
   providedIn: 'root',
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = 'https://localhost:5001/api/products';
   constructor(private http: HttpClient) {}
 
   getProducts(shopParams: ShopParams) {
@@ -34,7 +35,7 @@ export class ShopService {
     params = params.append('pageSize', shopParams.pageSize!.toString());
 
     return this.http
-      .get<IPagination>(this.baseUrl + 'products', {
+      .get<IPagination>(this.baseUrl, {
         observe: 'response', // we use observe here so it will return http response
         params,
       })
@@ -45,13 +46,17 @@ export class ShopService {
       );
   }
 
+  getProduct(id: number) {
+    return this.http.get<IProduct>(this.baseUrl + '/' + id);
+  }
+
   getBrands() {
     //In a simpe request of get we the body , which is Ibrand in this case but we use observe like above
     // it will return http reponse and we need to take out body from http resposne
-    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands');
+    return this.http.get<IBrand[]>(this.baseUrl + '/brands');
   }
 
   getProductTypes() {
-    return this.http.get<IProductType[]>(this.baseUrl + 'products/types');
+    return this.http.get<IProductType[]>(this.baseUrl + '/types');
   }
 }
